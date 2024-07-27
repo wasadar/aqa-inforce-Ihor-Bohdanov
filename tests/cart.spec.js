@@ -13,6 +13,7 @@ test('Add to cart', async ({ page }) => {
     await dialog.dismiss();
   });
   await page.getByText('Cart', { exact: true }).click();
+  await page.waitForTimeout(2000);
   await expect(await page.locator('td').nth(1)).toHaveText(name);
 });
 
@@ -28,9 +29,7 @@ test('Remove from the cart', async ({ page }) => {
     });
     await page.getByText('Cart', { exact: true }).click();
     await page.getByText('Delete').click();
-
-    await page.waitForTimeout(1000);
-
+    await page.waitForTimeout(2000);
     await expect(await page.locator('td').count()).toBe(0);
 });
 
